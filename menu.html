@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Maxima Hairdressers Navbar</title>
+<style>
+/* NAVBAR */
+.navbar {
+    width: 100%;
+    background: rgba(255,255,255,0.95);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 10px 40px;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+    border-radius: 20px;
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+}
+
+/* LOGO */
+.navbar .logo {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-size: 28px;
+    font-weight: bold;
+    color: #6a1b9a;
+}
+
+.navbar .logo img {
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+}
+
+/* NAV LINKS */
+.nav-links {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    position: relative;
+}
+
+.nav-links a {
+    text-decoration: none;
+    padding: 10px 18px;
+    font-size: 16px;
+    font-weight: 600;
+    color: #333;
+    border-radius: 12px;
+    background: rgba(255, 255, 255, 0.7);
+    transition: 0.3s ease;
+}
+
+.nav-links a:hover {
+    background: #6a1b9a;
+    color: #fff;
+}
+
+/* DROPDOWN */
+.dropdown {
+    position: relative;
+    cursor: pointer;
+}
+
+.dropdown-content {
+    display: none;
+    position: absolute;
+    top: 45px;
+    left: 0;
+    background: rgba(255,255,255,0.95);
+    box-shadow: 0 4px 15px rgba(0,0,0,0.15);
+    border-radius: 12px;
+    min-width: 150px;
+    z-index: 1000;
+    flex-direction: column;
+}
+
+.dropdown-content a {
+    padding: 10px 15px;
+    color: #333;
+    background: transparent;
+    display: block;
+    transition: 0.3s;
+}
+
+.dropdown-content a:hover {
+    background: #6a1b9a;
+    color: #fff;
+}
+
+/* PROFILE ICON */
+.profile {
+    margin-left: 15px;
+}
+
+.profile img {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    border: 2px solid #6a1b9a;
+    cursor: pointer;
+    transition: 0.3s ease;
+}
+
+.profile img:hover {
+    transform: scale(1.1);
+    border-color: #44ea60;
+}
+
+/* RESPONSIVE */
+@media (max-width:768px){
+    .navbar { flex-direction: column; gap: 10px; }
+    .nav-links { flex-wrap: wrap; justify-content: center; }
+    .dropdown-content { position: relative; top: 0; left: 0; }
+}
+</style>
+</head>
+<body>
+
+<div class="navbar">
+    <div class="logo">
+        <img src="logo.png" alt="Logo">
+        <span>MAXIMA HAIRDRESSERS</span>
+    </div>
+
+    <div class="nav-links">
+        <a href="about.html">About</a>
+        <a href="hairdress.html">Order Now</a>
+        <a href="feedback.html">Feedback</a>
+
+        <!-- Clickable Dropdown -->
+        <div class="dropdown" onclick="toggleDropdown()">
+            <a>Menu ▼</a>
+            <div class="dropdown-content" id="menuDropdown">
+                <a href="about.html">About</a>
+                <a href="hairdress.html">Order Now</a>
+                <a href="feedback.html">Feedback</a>
+                <a href="profile.html">Profile</a>
+            </div>
+        </div>
+
+        <a href="profile.html">Profile</a>
+        <div class="profile">
+            <img src="profile.png" alt="Profile">
+        </div>
+    </div>
+</div>
+
+<script>
+function toggleDropdown() {
+    const dropdown = document.getElementById('menuDropdown');
+    dropdown.style.display = dropdown.style.display === 'flex' ? 'none' : 'flex';
+}
+
+// Optional: Close dropdown if clicked outside
+window.addEventListener('click', function(e) {
+    const dropdown = document.getElementById('menuDropdown');
+    if (!e.target.closest('.dropdown')) {
+        dropdown.style.display = 'none';
+    }
+});
+</script>
+
+</body>
+</html>

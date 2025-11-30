@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Payment & Service Details</title>
+
+  <style>
+    body {
+      font-family: Arial, Helvetica, sans-serif;
+      background: #f8f1ff;
+      margin: 0;
+      padding: 0;
+    }
+
+    .container {
+      width: 95%;
+      max-width: 600px;
+      margin: 40px auto;
+      background: #fff;
+      padding: 25px;
+      border-radius: 15px;
+      box-shadow: 0px 5px 15px rgba(0,0,0,0.1);
+    }
+
+    h2 {
+      text-align: center;
+      color: #7a3db8;
+      margin-bottom: 20px;
+    }
+
+    label {
+      font-weight: bold;
+      display: block;
+      margin-top: 15px;
+      color: #333;
+    }
+
+    select, input[type="date"], input[type="time"] {
+      width: 100%;
+      padding: 12px;
+      margin-top: 8px;
+      border: 2px solid #d6b3ff;
+      border-radius: 10px;
+      font-size: 15px;
+      outline: none;
+    }
+
+    select:focus,
+    input:focus {
+      border-color: #7a3db8;
+    }
+
+    .btn {
+      width: 100%;
+      margin-top: 25px;
+      padding: 15px;
+      background: #7a3db8;
+      color: #fff;
+      border: none;
+      border-radius: 12px;
+      font-size: 18px;
+      cursor: pointer;
+      transition: 0.3s;
+    }
+
+    .btn:hover {
+      background: #622e95;
+    }
+  </style>
+</head>
+
+<body>
+
+  <div class="container">
+    <h2>Complete Your Booking</h2>
+
+    <!-- Payment Method -->
+    <label>Choose Payment Method</label>
+    <select id="paymentMethod">
+      <option value="">-- Select Payment Method --</option>
+      <option value="bitcoin">bitcoin</option>
+      <option value="paypal">paypal</option>
+      <option value="mpesa">M-PESA</option>
+      <option value="card">Debit/Credit Card</option>
+      <option value="cash">Cash on Delivery</option>
+    </select>
+
+    <!-- Service Type -->
+    <label>Choose Service Location</label>
+    <select id="serviceLocation">
+      <option value="">-- Select Location --</option>
+      <option value="onsite">On-Site (At Salon)</option>
+      <option value="home">Home Service</option>
+    </select>
+
+    <!-- Date -->
+    <label>Select Preferred Date</label>
+    <input type="date" id="serviceDate">
+
+    <!-- Time -->
+    <label>Select Preferred Time</label>
+    <input type="time" id="serviceTime">
+
+    <button class="btn" id="proceedBtn">Proceed to Confirm</button>
+  </div>
+
+  <script>
+    const proceedBtn = document.getElementById("proceedBtn");
+
+    proceedBtn.addEventListener("click", () => {
+      const payment = document.getElementById("paymentMethod").value;
+      const location = document.getElementById("serviceLocation").value;
+      const date = document.getElementById("serviceDate").value;
+      const time = document.getElementById("serviceTime").value;
+
+      if (payment && location && date && time) {
+        alert("✅ Booking successful! Thank you for choosing Maxima Hairdressers.");
+      } else {
+        alert("⚠️ Please fill in all fields to proceed.");
+      }
+    });
+  </script>
+
+</body>
+</html>

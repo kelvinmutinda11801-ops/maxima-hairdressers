@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Feedback - Maxima Hairdressers</title>
+
+<!-- EmailJS SDK -->
+<script src="https://cdn.jsdelivr.net/npm/emailjs-com@3/dist/email.min.js"></script>
+<script>
+   (function(){
+      emailjs.init("c8T9ZwUm7G4ePaJiH"); // Your Public Key
+   })();
+</script>
+
+<style>
+body {
+    margin: 0;
+    font-family: Arial, sans-serif;
+    background: linear-gradient(135deg, #ff9a9e, #fad0c4, #fbc2eb, #a1c4fd);
+    background-size: 400% 400%;
+    animation: gradientShift 15s ease infinite;
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    min-height: 100vh;
+    padding-top: 40px;
+}
+
+@keyframes gradientShift {
+    0% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+    100% { background-position: 0% 50%; }
+}
+
+.container {
+    max-width: 600px;
+    width: 90%;
+    background: rgba(255,255,255,0.95);
+    padding: 25px 30px;
+    border-radius: 20px;
+    box-shadow: 0 8px 20px rgba(0,0,0,0.2);
+}
+
+h1 {
+    text-align: center;
+    color: #6a1b9a;
+    margin-bottom: 25px;
+    font-size: 28px;
+}
+
+label {
+    font-weight: bold;
+    display: block;
+    margin: 15px 0 5px;
+}
+
+input, textarea {
+    width: 100%;
+    padding: 12px;
+    border-radius: 10px;
+    border: 1px solid #aaa;
+    font-size: 15px;
+    transition: border 0.3s, box-shadow 0.3s;
+}
+
+input:focus, textarea:focus {
+    outline: none;
+    border-color: #d81b60;
+    box-shadow: 0 0 8px rgba(216, 27, 96, 0.5);
+}
+
+textarea {
+    resize: vertical;
+}
+
+button {
+    margin-top: 15px;
+    padding: 12px 28px;
+    background: #d81b60;
+    color: white;
+    border: none;
+    border-radius: 12px;
+    font-weight: bold;
+    font-size: 15px;
+    cursor: pointer;
+    transition: 0.3s ease;
+    display: block;
+    width: 100%;
+}
+
+button:hover {
+    background: #ad1457;
+    transform: scale(1.03);
+}
+
+#statusMessage {
+    margin-top: 15px;
+    font-size: 15px;
+    text-align: center;
+}
+
+@media (max-width: 480px) {
+    h1 { font-size: 24px; }
+    input, textarea { font-size: 14px; padding: 10px; }
+    button { font-size: 14px; padding: 10px; }
+}
+</style>
+</head>
+
+<body>
+<div class="container">
+    <h1>Feedback</h1>
+
+    <form id="feedbackForm">
+        <label for="userEmail">Your Email (optional):</label>
+        <input type="email" id="userEmail" name="userEmail" placeholder="you@example.com">
+
+        <label for="feedback">Share your thoughts:</label>
+        <textarea id="feedback" name="feedbackMessage" rows="6" placeholder="Write your feedback here..." required></textarea>
+
+        <button type="submit">Submit Feedback</button>
+        <p id="statusMessage"></p>
+    </form>
+</div>
+
+<script>
+document.getElementById('feedbackForm').addEventListener('submit', function(e) {
+    e.preventDefault(); // Prevent normal form submission
+
+    const feedbackText = document.getElementById('feedback').value.trim();
+    const userEmail = document.getElementById('userEmail').value.trim();
+    const submissionDate = new Date().toLocaleString();
+
+    if (!feedbackText) {
+        document.getElementById('statusMessage').textContent = "Please type your feedback before submitting.";
+        document.getElementById('statusMessage').style.color = "red";
+        return;
+    }
+
+    // Send feedback via EmailJS
+    emailjs.send("service_71elzaz", "template_ydy8wvx", {
+        feedbackMessage: feedbackText,
+        userEmail: userEmail || "Anonymous",
+        submissionDate: submissionDate
+    })
+    .then(function() {
+        document.getElementById('statusMessage').textContent = "Thank you! Your feedback was submitted successfully.";
+        document.getElementById('statusMessage').style.color = "green";
+        document.getElementById('feedbackForm').reset(); // Clear form
+    }, function(error) {
+        console.error("EmailJS Error:", error);
+        document.getElementById('statusMessage').textContent = "Oops! Something went wrong. Please try again later.";
+        document.getElementById('statusMessage').style.color = "red";
+    });
+});
+</script>
+</body>
+</html>

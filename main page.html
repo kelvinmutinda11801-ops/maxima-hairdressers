@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Maxima Hairdressers</title>
+<link rel="icon" href="MUTINDA KELVIN/1.jpg" type="image/png">
+<style>
+/* BODY */
+body {
+    margin: 0;
+    font-family: 'Arial', sans-serif;
+    background: #ccc;
+}
+
+/* PAGE CONTAINER - FULL WIDTH */
+.page-container {
+    width: 100%;
+    border-radius: 0; /* remove rounded corners */
+    overflow: hidden;
+    background: linear-gradient(135deg, #ff9a9e, #fad0c4, #fbc2eb, #a1c4fd);
+    background-size: 400% 400%;
+    animation: gradientShift 15s ease infinite;
+    padding-bottom: 40px;
+}
+
+@keyframes gradientShift {
+    0% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+    100% { background-position: 0% 50%; }
+}
+
+/* HEADER */
+header {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background: rgba(255,255,255,0.85);
+    padding: 4px 20px;
+    box-shadow: 0 2px 6px rgba(0,0,0,0.15);
+    height: 50px;
+}
+
+/* LOGO AND TITLE */
+.logo-title {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.logo { font-size: 32px; }
+.site-title { font-size: 18px; font-weight: bold; color: #6a1b9a; }
+
+/* NAVBAR LINKS */
+nav {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+/* REGULAR LINKS */
+nav a {
+    text-decoration: none;
+    color: #6a1b9a;
+    font-weight: bold;
+    padding: 4px 8px;
+    border-radius: 6px;
+    font-size: 14px;
+    transition: 0.3s;
+}
+
+nav a:hover {
+    background: #d81b60;
+    color: white;
+    transform: scale(1.05);
+}
+
+/* PROFILE ICON */
+.profile-link {
+    margin-right: 20px; /* space after profile */
+}
+
+.profile {
+    width: 24px;
+    height: 24px;
+    border-radius: 50%;
+    background: url('https://cdn-icons-png.flaticon.com/512/847/847969.png') no-repeat center/cover;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+.profile:hover {
+    transform: scale(1.1);
+}
+
+/* HERO */
+.hero {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    padding: 20px;
+}
+
+.hero .main-logo { font-size: 150px; margin-bottom: 15px; }
+h1 { font-size: 36px; margin: 0; }
+p.tagline { 
+    font-size: 18px; 
+    margin: 18px 0 35px 0; 
+    line-height: 1.4; 
+    max-width: 650px; 
+}
+
+.start-btn {
+    display: inline-block;
+    background: #d81b60;
+    color: white;
+    padding: 12px 30px;
+    font-size: 16px;
+    font-weight: bold;
+    border-radius: 12px;
+    text-decoration: none;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+    transition: all 0.3s ease;
+}
+
+.start-btn:hover {
+    background: #ad1457;
+    transform: scale(1.08) translateY(-2px);
+    box-shadow: 0 6px 18px rgba(0,0,0,0.3);
+}
+
+/* RESPONSIVE */
+@media (max-width: 768px) {
+    .hero .main-logo { font-size: 110px; }
+    h1 { font-size: 28px; }
+    p.tagline { font-size: 16px; }
+    .start-btn { font-size: 14px; padding: 10px 25px; }
+    .profile { width: 20px; height: 20px; }
+}
+</style>
+</head>
+<body>
+
+<div class="page-container">
+
+<header>
+    <div class="logo-title">
+        <div class="logo">👩‍🦰</div>
+        <div class="site-title">MAXIMA HAIRDRESSERS</div>
+    </div>
+
+    <nav>
+        <a href="about.html">About</a>
+        <a href="hairdress.html">Order Now</a>
+        <a href="feedback.html">Feedback</a>
+
+        <a href="profile.html" class="profile-link">
+            <div class="profile" id="profileIcon"></div>
+        </a>
+    </nav>
+</header>
+
+<section class="hero">
+    <div class="main-logo">👩‍🦰</div>
+    <h1>MAXIMA HAIRDRESSERS</h1>
+    <p class="tagline">
+        Discover the beauty in you!<br>
+        At Maxima Hairdressers, we don't just style hair — 
+        <strong>we bring your confidence to life.</strong><br>
+        Look good. Feel amazing. Shine every day.
+    </p>
+    <a href="hairdress.html" class="start-btn">GET STARTED</a>
+</section>
+
+</div>
+
+<script>
+/* LOAD SAVED PROFILE IMAGE INTO NAV ICON */
+document.addEventListener("DOMContentLoaded", function () {
+    let savedImg = localStorage.getItem("profilePic");
+    if (savedImg) {
+        document.getElementById("profileIcon").style.backgroundImage = `url(${savedImg})`;
+    }
+});
+</script>
+
+</body>
+</html>

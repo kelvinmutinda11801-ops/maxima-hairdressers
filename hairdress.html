@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Hairdress Gallery - Maxima Hairdressers</title>
+<style>
+body {
+    margin: 0;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background: linear-gradient(135deg, #ff9a9e, #fad0c4, #fbc2eb, #a1c4fd);
+    background-size: 400% 400%;
+    animation: gradientShift 20s ease infinite;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding-bottom: 40px;
+}
+
+@keyframes gradientShift {
+    0% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+    100% { background-position: 0% 50%; }
+}
+
+h1 {
+    text-align: center;
+    font-size: 42px;
+    color: #6a1b9a;
+    margin: 40px 0 20px;
+    text-shadow: 2px 2px 5px rgba(0,0,0,0.3);
+}
+
+.search-container {
+    position: relative;
+    width: 90%;
+    max-width: 400px;
+    margin-bottom: 30px;
+}
+
+#searchBar {
+    width: 100%;
+    padding: 10px 40px 10px 15px;
+    font-size: 16px;
+    border-radius: 12px;
+    border: 2px solid #6a1b9a;
+    outline: none;
+}
+
+.search-icon {
+    position: absolute;
+    right: 10px;
+    top: 50%;
+    transform: translateY(-50%);
+    font-size: 18px;
+    color: #6a1b9a;
+    pointer-events: none;
+}
+
+.content {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 30px;
+    width: 95%;
+    max-width: 1300px;
+    justify-items: center;
+}
+
+.image-card {
+    position: relative;
+    width: 320px;
+    height: 320px;
+    margin-bottom: 20px;
+    border-radius: 4px;
+}
+
+.image-card img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    border-radius: 4px;
+    display: block;
+    z-index: 1;
+}
+
+/* Moving gradient border */
+.image-card::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    border-radius: 4px;
+    padding: 4px; /* border thickness */
+    background: linear-gradient(90deg, red, orange, yellow, green, cyan, blue, magenta, red);
+    background-size: 200% 200%;
+    -webkit-mask:
+        linear-gradient(#fff 0 0) content-box, 
+        linear-gradient(#fff 0 0);
+    -webkit-mask-composite: xor;
+    mask-composite: exclude;
+    z-index: 2;
+    animation: borderMove 2s linear infinite;
+}
+
+@keyframes borderMove {
+    0% { background-position: 0% 0%; }
+    100% { background-position: 200% 0%; }
+}
+
+.img-text {
+    position: absolute;
+    top: 12px;
+    left: 50%;
+    transform: translateX(-50%);
+    color: #d81b60;
+    font-weight: bold;
+    font-size: 16px;
+    text-shadow: 1px 1px 3px rgba(0,0,0,0.7);
+    z-index: 3;
+    text-align: center;
+}
+
+.btn {
+    position: absolute;
+    bottom: 12px;
+    left: 50%;
+    transform: translateX(-50%);
+    background: #007bff;
+    color: #fff;
+    padding: 6px 16px;
+    border: none;
+    border-radius: 12px;
+    font-size: 14px;
+    font-weight: bold;
+    cursor: pointer;
+    z-index: 3;
+}
+
+.btn:hover { background: #0056b3; }
+
+@media (max-width: 1024px) { .content { grid-template-columns: repeat(2, 1fr); } }
+@media (max-width: 768px) { 
+    h1 { font-size: 34px; } 
+    .content { grid-template-columns: 1fr; } 
+    .image-card { width: 220px; height: 220px; } 
+}
+@media (max-width: 480px) { 
+    h1 { font-size: 28px; } 
+    .image-card { width: 160px; height: 160px; } 
+}
+</style>
+</head>
+<body>
+
+<h1>👩‍🦰 MAXIMA HAIRDRESSERS</h1>
+
+<div class="search-container">
+    <input type="text" id="searchBar" placeholder="Search hairstyles...">
+    <span class="search-icon">&#128269;</span>
+</div>
+
+<div class="content" id="gallery">
+
+<!-- All 21 Image Cards -->
+<div class="image-card" data-title="Braids"><span class="img-text">Braids</span><img src="MUTINDA KELVIN/1.jpg" alt="Braids"><a href="booking.html"><button class="btn">Book @15$</button></a></div>
+<div class="image-card" data-title="Bob Braids"><span class="img-text">Bob Braids</span><img src="MUTINDA KELVIN/2.jpg" alt="Bob Braids"><a href="booking.html"><button class="btn">Book @17$</button></a></div>
+<div class="image-card" data-title="Beaded Cornrows"><span class="img-text">Beaded Cornrows</span><img src="MUTINDA KELVIN/3.jpg" alt="Beaded Cornrows"><a href="booking.html"><button class="btn">Book @20$</button></a></div>
+<div class="image-card" data-title="Curly Wig"><span class="img-text">Curly Wig</span><img src="MUTINDA KELVIN/4.webp" alt="Curly Wig"><a href="booking.html"><button class="btn">Book @22$</button></a></div>
+<div class="image-card" data-title="Cornrows"><span class="img-text">Cornrows</span><img src="MUTINDA KELVIN/5.jpg" alt="Cornrows"><a href="booking.html"><button class="btn">Book @15$</button></a></div>
+<div class="image-card" data-title="Mini Ponytails"><span class="img-text">Mini Ponytails</span><img src="MUTINDA KELVIN/6.avif" alt="Mini Ponytails"><a href="booking.html"><button class="btn">Book @16$</button></a></div>
+<div class="image-card" data-title="Natural Hair Curls"><span class="img-text">Natural Hair Curls</span><img src="MUTINDA KELVIN/7.webp" alt="Natural Hair Curls"><a href="booking.html"><button class="btn">Book @18$</button></a></div>
+<div class="image-card" data-title="Curly Dreadlocks"><span class="img-text">Curly Dreadlocks</span><img src="MUTINDA KELVIN/8.webp" alt="Curly Dreadlocks"><a href="booking.html"><button class="btn">Book @19$</button></a></div>
+<div class="image-card" data-title="Dreadlocs"><span class="img-text">Dreadlocs</span><img src="MUTINDA KELVIN/9.jpg" alt="Dreadlocs"><a href="booking.html"><button class="btn">Book @20$</button></a></div>
+<div class="image-card" data-title="Twist Locs"><span class="img-text">Twist Locs</span><img src="MUTINDA KELVIN/10.jpg" alt="Twist Locs"><a href="booking.html"><button class="btn">Book @17$</button></a></div>
+<div class="image-card" data-title="Barrel Twist Locs"><span class="img-text">Barrel Twist Locs</span><img src="MUTINDA KELVIN/11.jpg" alt="Barrel Twist Locs"><a href="booking.html"><button class="btn">Book @21$</button></a></div>
+<div class="image-card" data-title="Dread Locs"><span class="img-text">Dread Locs</span><img src="MUTINDA KELVIN/12.jpg" alt="Dread Locs"><a href="booking.html"><button class="btn">Book @22$</button></a></div>
+<div class="image-card" data-title="Dreadlocs"><span class="img-text">Dreadlocs</span><img src="MUTINDA KELVIN/13.jpg" alt="Dreadlocs"><a href="booking.html"><button class="btn">Book @16$</button></a></div>
+<div class="image-card" data-title="Natural Hair Curls"><span class="img-text">Natural Hair Curls</span><img src="MUTINDA KELVIN/14.jpg" alt="Natural Hair Curls"><a href="booking.html"><button class="btn">Book @23$</button></a></div>
+<div class="image-card" data-title="Afro"><span class="img-text">Afro</span><img src="MUTINDA KELVIN/15.jpg" alt="Afro"><a href="booking.html"><button class="btn">Book @19$</button></a></div>
+<div class="image-card" data-title="Pixie Cut"><span class="img-text">Pixie Cut</span><img src="MUTINDA KELVIN/16.jpg" alt="Pixie Cut"><a href="booking.html"><button class="btn">Book @18$</button></a></div>
+<div class="image-card" data-title="Bubble Braids"><span class="img-text">Bubble Braids</span><img src="MUTINDA KELVIN/17.jpg" alt="Bubble Braids"><a href="booking.html"><button class="btn">Book @20$</button></a></div>
+<div class="image-card" data-title="Bob Wig"><span class="img-text">Bob Wig</span><img src="MUTINDA KELVIN/18.jpg" alt="Bob Wig"><a href="booking.html"><button class="btn">Book @21$</button></a></div>
+<div class="image-card" data-title="Knotless Braids"><span class="img-text">Knotless Braids</span><img src="MUTINDA KELVIN/19.jpg" alt="Knotless Braids"><a href="booking.html"><button class="btn">Book @22$</button></a></div>
+<div class="image-card" data-title="Twist Braids"><span class="img-text">Twist Braids</span><img src="MUTINDA KELVIN/20.jpg" alt="Twist Braids"><a href="booking.html"><button class="btn">Book @23$</button></a></div>
+<div class="image-card" data-title="Twisted Locs"><span class="img-text">Twisted Locs</span><img src="MUTINDA KELVIN/21.jpg" alt="Twisted Locs"><a href="booking.html"><button class="btn">Book @24$</button></a></div>
+
+</div>
+
+<script>
+const searchBar = document.getElementById('searchBar');
+searchBar.addEventListener('input', function() {
+    const filter = this.value.toLowerCase();
+    const cards = document.querySelectorAll('.image-card');
+    cards.forEach(card => {
+        const title = card.getAttribute('data-title').toLowerCase();
+        card.style.display = title.includes(filter) ? '' : 'none';
+    });
+});
+</script>
+
+</body>
+</html>

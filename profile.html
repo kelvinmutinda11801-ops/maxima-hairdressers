@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Your Profile - Maxima Hairdressers</title>
+
+<style>
+body {
+    margin: 0;
+    font-family: Arial, sans-serif;
+    background: linear-gradient(135deg, #ff9a9e, #fad0c4, #fbc2eb, #a1c4fd);
+    background-size: 400% 400%;
+    animation: gradientShift 15s ease infinite;
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    min-height: 100vh;
+    padding: 30px 0;
+}
+
+@keyframes gradientShift {
+    0% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+    100% { background-position: 0% 50%; }
+}
+
+.container {
+    max-width: 600px;
+    width: 90%;
+    background: rgba(255, 255, 255, 0.90);
+    padding: 25px;
+    border-radius: 20px;
+    box-shadow: 0 8px 20px rgba(0,0,0,0.15);
+}
+
+h1 {
+    text-align: center;
+    color: #6a1b9a;
+    margin-bottom: 20px;
+}
+
+/* Profile Picture Circle */
+#preview {
+    width: 130px;
+    height: 130px;
+    margin: 0 auto 15px;
+    border-radius: 50%;
+    border: 4px solid #6a1b9a;
+    background-size: cover;
+    background-position: center;
+    background-image: url('https://cdn-icons-png.flaticon.com/512/847/847969.png');
+}
+
+/* Inputs */
+label {
+    font-weight: bold;
+    display: block;
+    margin-top: 15px;
+}
+
+input {
+    width: 100%;
+    padding: 12px;
+    border-radius: 10px;
+    border: 2px solid #d6b3ff;
+    margin-top: 5px;
+    font-size: 15px;
+}
+
+input:focus {
+    border-color: #6a1b9a;
+}
+
+/* Button */
+button {
+    margin-top: 25px;
+    width: 100%;
+    background: #d81b60;
+    color: white;
+    padding: 14px;
+    border: none;
+    border-radius: 12px;
+    font-size: 18px;
+    cursor: pointer;
+    font-weight: bold;
+    transition: 0.3s;
+}
+
+button:hover {
+    background: #ad1457;
+    transform: scale(1.05);
+}
+
+/* Success Message */
+#status {
+    text-align: center;
+    margin-top: 15px;
+    font-weight: bold;
+    color: green;
+    display: none;
+}
+</style>
+</head>
+<body>
+
+<div class="container">
+    <h1>Your Profile</h1>
+
+    <!-- Profile Preview -->
+    <div id="preview"></div>
+
+    <label for="profilePic">Profile Picture</label>
+    <input type="file" id="profilePic" accept="image/*">
+
+    <label>Name</label>
+    <input type="text" id="name">
+
+    <label>Email</label>
+    <input type="email" id="email">
+
+    <label>Contact</label>
+    <input type="tel" id="contact">
+
+    <button onclick="saveProfile()">Save Profile</button>
+
+    <p id="status">Profile saved successfully!</p>
+</div>
+
+<script>
+// Load saved data on page open
+window.onload = () => {
+    if (localStorage.getItem("profilePic"))
+        document.getElementById("preview").style.backgroundImage = 
+            `url(${localStorage.getItem("profilePic")})`;
+
+    if (localStorage.getItem("name"))
+        document.getElementById("name").value = localStorage.getItem("name");
+
+    if (localStorage.getItem("email"))
+        document.getElementById("email").value = localStorage.getItem("email");
+
+    if (localStorage.getItem("contact"))
+        document.getElementById("contact").value = localStorage.getItem("contact");
+};
+
+// Preview uploaded image + save Base64
+document.getElementById("profilePic").addEventListener("change", function() {
+    const file = this.files[0];
+    if (!file) return;
+
+    const reader = new FileReader();
+    reader.onload = function(e) {
+        const imgData = e.target.result;
+
+        // show preview
+        document.getElementById("preview").style.backgroundImage = `url(${imgData})`;
+
+        // save image to localStorage
+        localStorage.setItem("profilePic", imgData);
+    };
+    reader.readAsDataURL(file);
+});
+
+// Save all details
+function saveProfile() {
+    localStorage.setItem("name", document.getElementById("name").value);
+    localStorage.setItem("email", document.getElementById("email").value);
+    localStorage.setItem("contact", document.getElementById("contact").value);
+
+    // Show success
+    const msg = document.getElementById("status");
+    msg.style.display = "block";
+
+    setTimeout(() => {
+        msg.style.display = "none";
+    }, 2000);
+}
+</script>
+
+</body>
+</html>
